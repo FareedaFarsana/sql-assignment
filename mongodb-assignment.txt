@@ -1,0 +1,277 @@
+Question 1
+---
+1)Create a database named companyDB and switch to it.
+
+ 	- use companyDB
+
+2)Create a collection named employees by inserting one employee document with:
+● name
+● age
+● department
+ 
+ 	- db.createCollection('employees')
+ 	- db.employees.insertOne({name:"Henna", age: 22, department:"IT"})
+
+3)Insert 3 more employees into the employees collection with different departments.
+
+ 	- db.employees.insertMany([
+ 		{name:"John", age: 25, department:"HR"},
+ 		{name:"steve", age: 30, department:"Administration"},
+ 		{name: "fidha", age: 33, department:"Accounts"}
+ 	 ])
+
+4)Display all employee documents from the employees collection.
+ 
+ 	db.employees.find()
+
+5)Display employees whose department is "IT".
+ 
+ 	db.employees.find({department: "IT"})
+
+6)Update the age of one employee.
+
+ 	db.employees.updateOne({name:"fidha"},{$set: {age:34} })
+
+7)Add a new field status: "working" to all employees.
+
+ 	db.employees.updateMany({ }, {$set: {status: "working"} })
+
+8)Update department "IT" to "Technology".
+
+ 	db.employees.updateMany({department: "IT"}, {$set: {department: "Technology"} })
+
+11) Create a new collection named projects and insert:
+● projectName
+● duration
+● budget
+ 
+ 	- db.createCollection('projects')
+ 	- db.projects.insertMany([
+ 		{projectName: "Hospital management system", duration: "1 year", budget: 1200000 },
+ 		{projectName: "Website", duration: "8 months", budget: 90000 },
+ 		{projectName: "Employee management system", duration: "6 months", budget: 50000 }
+ 	])
+
+
+12) Display all documents from the projects collection.
+
+ 	db.projects.find()
+
+13)Update the budget of one project.
+
+ 	db.projects.updateOne({projectName: "Website"}, {$set: {budget: 80000} })
+
+14)Delete a project whose projectName is "Website".
+
+ 	db.projects.deleteOne({projectName: "Website"})
+
+
+15) Create a collection named managers with:
+● name
+● team
+● experience
+Insert 2 managers.
+
+ 	db.createCollection('managers')
+ 	db.managers.insertMany([
+ 		{name: "Rahul", team: "Technology", experience: 8},
+ 		{name: "Anitha", team: "HR", experience: 5}
+ 	])
+
+
+
+16) Delete all documents from the managers collection.
+
+ 	db.managers.deleteMany({})
+
+
+17) Display employees whose age is greater than 25.
+
+ 	db.employees.find({age: {$gt: 25}})
+
+
+18) Display employees whose age is between 22 and 30
+
+ 	db.employees.find({age: {$gte: 22, $lte: 30} })
+
+19) Display employees whose department is either "Technology" or "Finance".
+
+ 	db.employees.find({ $or: [{department: "Technology"}, {department: "Finance"} ] })
+
+
+20) Display employees whose department is not "HR".
+
+ 
+21) Display employees whose:
+● department is "Technology"
+● AND age is greater than 28.
+
+ 	db.employees.find({ $and: [{department: "Technology"}, {age: {$gt: 28} }] })
+
+
+22) Display employees whose:
+● department is "Sales"
+● OR age is less than 24.
+
+ 	db.employees.insertOne({name:"neena", age: 65, department:"Sales"})
+ 	db.employees.find({$or: [{department:"Sales"}, {age: {$lt: 24} }] })
+
+
+23)Delete employees whose age is greater than 60.
+
+ 	db.employees.deleteMany({age: {$gt: 60}})
+
+
+---
+
+QUESTION 2
+---
+
+1) Create a database named hospitalDB and switch to it.
+
+ 	use hospitalDB
+
+
+2) Create a collection named patients by inserting one patient document with:
+● name
+● age
+● disease
+
+ 	- db.createCollection('patients')
+ 	- db.patients.insertOne({name: "John", age: 29, disease: "fever"})
+
+
+3) Insert 3 more patients into the patients collection with different diseases.
+
+ 
+ 	db.patients.insertMany([
+ 		{name: "natasha", age: 49, disease: "Diabetes"},
+ 		{name: "Arun", age: 54, disease: "Flu"},
+ 		{name: "Meera", age: 20, disease: "Hepatitis"}
+ 	])
+
+
+4) Display all patient documents from the patients collection.
+
+ 	db.patients.find()
+
+5) Display patients whose disease is "Diabetes".
+
+ 	db.patients.find({disease: "Diabetes"})
+
+6) Display only name and disease of all patients.
+
+ 	db.patients.find({}, {name: 1, disease: 1, _id: 0})
+
+7) Update the age of one patient.
+
+ 	db.patients.updateOne({name: "Meera"}, {$set: {age: 21}  })
+ 
+ 
+8) Add a new field status: "admitted" to all patients
+
+db.patients.updateMany({}, {$set: {status: "admitted"} })
+
+
+9) Update disease "Diabetes" to "Sugar".
+
+ 	db.patients.updateMany({disease: "Diabetes"}, {$set: {disease: "Sugar"} })
+
+
+10) Delete one patient using name.
+
+ 	db.patients.deleteOne({name: "John"})
+Delete patients whose disease is "Flu"
+
+ 	db.patients.deleteOne({disease: "Flu"})
+
+12) Create a new collection named doctors and insert:
+● name
+● specialization
+● experience
+
+ 	db.createCollection('doctors')
+ 	db.doctors.insertMany([
+ 		{name: "Ravi", specialization: "Cardiology" , experience: 10},
+ 		{name: "Anitha", specialization: "Pediatrics", experience: 6},
+ 		{name: "Suresh", specialization: "Orthopedics", experience: 12}
+ 	])
+
+13) Display all documents from the doctors collection.
+
+ 	db.doctors.find()
+
+14) Update the experience of one doctor
+
+ 	db.doctors.updateOne({name: "Anitha"}, {$set: {experience: 7} })
+
+
+15) Delete a doctor whose name is "Ravi".
+
+ 	db.doctors.deleteOne({name: "Ravi"})
+
+16) Create a collection named appointments with:
+● patientName
+● doctorName
+● date
+Insert 2 appointments.
+
+ 	db.createCollection('appointments')
+ 	db.appointments.insertMany([
+ 		{patientsName: "natasha", doctorName: "Anitha", date: ISODate("2025-01-10")},
+ 		{patientsName: "Meera", doctorName: "Suresh", date: ISODate("2025-01-12")}
+ 	])
+
+17) Display appointments for doctorName "Anitha"
+
+ 	db.appointments.find({doctorName: "Anitha"})
+
+18) Update the appointment date for one patient.
+
+ 	db.appointments.updateOne({patientsName: "natasha"}, {$set: {Date: ISODate("2025-02-12")} })
+
+
+19) Delete all documents from the appointments collection.
+
+	db.appointments.deleteMany({})
+
+20) Display patients whose age is greater than 40.
+
+	db.patients.find({age: {$gt: 40} })
+
+21)Display patients whose age is between 30 and 50
+
+	db.patients.find({age: {$gte: 30, $lte: 50}})
+
+22) Display patients whose disease is either "Sugar" or "Asthma".
+
+	db.patients.find({ $or: [{disease: "Sugar"},{disease: "Asthma"}] })
+
+23) Display patients whose disease is not "Flu"
+
+	db.patients.find({disease: {$ne: "Flu"} })
+
+24) Display patients whose:
+● disease is "Sugar"
+● AND age is greater than 45.
+
+	db.patients.find({$and: [{disease: "Sugar"}, {age: {$gt: 45} }] })
+
+25) Display patients whose:
+● disease is "Cold"
+● OR age is less than 25.
+	
+	db.patients.find({ $or: [{disease: "Cold"}, {age: {$lt: 25} }] })
+
+26) Display patients sorted by age in descending order.
+
+	db.patients.find().sort({age: -1})
+
+27) Delete patients whose age is greater than 80.
+
+	db.patients.insertOne({name: "Navin", age: 87, disease: "cough"})
+	db.patients.deleteOne({age: {$gt:80} })
+
+
+
+
